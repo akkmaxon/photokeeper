@@ -10,18 +10,17 @@
   %body
     .container-fluid
       .row
-        - if notice.present?
-          %p.alert.alert-success= notice
-        - if alert.present?
-          %p.alert.alert-danger= alert
-
-        - if true
+        - if user_signed_in?
           .col-md-2
             = render 'layouts/sidebar'
           .col-md-10
             = render 'layouts/header' 
+            = render 'layouts/flash_messages'
             = yield
         - else
-          .col-md-6.col-md-offset-3
+          .col-xs-10.col-xs-offset-1.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.col
+            = render 'layouts/flash_messages'
             = yield
+            - unless controller.action_name == 'welcome'
+              %a{href: root_path} &larr; To Home
     = render 'layouts/footer'
