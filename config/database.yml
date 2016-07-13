@@ -16,5 +16,4 @@ test:
 production:
   <<: *default
   database: photokeeper_production
-  username: photokeeper
   password: <%= ENV['PHOTOKEEPER_DATABASE_PASSWORD'] %>
