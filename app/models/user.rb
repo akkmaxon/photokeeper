@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
     :validatable,
     #confirmable,
     :lockable
+
+  validates :full_name, length: { maximum: 128 }
 end
