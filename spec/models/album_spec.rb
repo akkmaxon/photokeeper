@@ -38,10 +38,10 @@ RSpec.describe Album do
     end
 
     it 'with too long title' do
-      album.update title: 'a' * 65
+      album.update title: 'a' * 129
       expect(album.errors.full_messages).
-	to contain_exactly 'Title is too long (maximum is 64 characters)'
-      expect(Album.first.title.size).to be < 65
+	to contain_exactly 'Title is too long (maximum is 128 characters)'
+      expect(Album.first.title.size).to be < 129
     end
   end
 
