@@ -15,6 +15,8 @@ gem 'faker'
 gem 'simple_form', '~> 3.2.1'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'haml-rails', '~> 0.9.0'
+gem 'omniauth-twitter'
+gem 'omniauth-github'
 
 
 group :development, :test do

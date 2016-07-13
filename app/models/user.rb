@@ -10,7 +10,18 @@ class User < ActiveRecord::Base
     :trackable,
     :validatable,
     #confirmable,
-    :lockable
+    :lockable,
+    :omniauthable
 
   validates :full_name, length: { maximum: 128 }
+
+  def self.from_omniauth(auth)
+    where(omni_provider: auth.provider, omni_uid: auth.uid).first_or_create do |user|
+      user.email = if auth.info.email then auth.info.email
+		   elsif auth.info.nickname then "#{auth.info.nickname}@__edit__your.mail__"
+		   elsif auth.info.name then "#{auth.info.name}@__edit__your.mail__"
+		   end
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
 end
