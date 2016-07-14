@@ -8,5 +8,7 @@ a {
 
 body {
   background-image: url('background.png');
+  .jumbotron {
+    box-shadow: 10px -10px 10px, -10px 10px 10px;
+  }
 }
-

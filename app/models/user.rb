@@ -17,10 +17,8 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     where(omni_provider: auth.provider, omni_uid: auth.uid).first_or_create do |user|
-      user.email = if auth.info.email then auth.info.email
-		   elsif auth.info.nickname then "#{auth.info.nickname}@__edit__your.mail__"
-		   elsif auth.info.name then "#{auth.info.name}@__edit__your.mail__"
-		   end
+      user.email = auth.info.email || Faker::Internet.email
+      user.full_name = auth.info.name || auth.info.nickname
       user.password = Devise.friendly_token[0,20]
     end
   end
