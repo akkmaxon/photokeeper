@@ -16,3 +16,22 @@
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+body#welcome {
+  background-image: url('background.png');
+  .jumbotron, .panel {
+    box-shadow: 10px -10px 10px, -10px 10px 10px;
+  }
+}
+
+aside {
+  margin: 0 -15px 0 -15px;
+  background-color: #2e2e2e;
+  img {
+    min-width: 100%;
+  }
+}
+
+header nav {
+  margin-bottom: 0;
+}

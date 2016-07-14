@@ -1,1 +1,20 @@
-%aside
+#menu.collapse.navbar-collapse
+  %aside.panel.panel-default
+    .panel-body.text-center
+      .thumbnail
+        = gravatar_for current_user
+      .btn-group.btn-group-xs
+        %button.btn.btn-default Followers
+        %button.btn.btn-default Following
+      %ul.nav.nav-pills.nav-stacked
+        %li{class: controller_name == 'feed' ? 'active' : ''}
+          %a{href: '#'} Feed
+        %li{class: controller_name == 'albums' ? 'active' : ''}
+          %a{href: '#'} Albums
+        %li{class: controller_name == 'photos' ? 'active' : ''}
+          %a{href: '#'} Photos
+        %li{class: controller_name == 'registrations' ? 'active' : ''}
+          %a{href: edit_user_registration_url} Settings
+        %hr
+        %li
+          %a{href: destroy_user_session_path, data: {method: 'delete'}} Sign Out
