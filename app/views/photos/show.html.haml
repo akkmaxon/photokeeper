@@ -1,0 +1,7 @@
+%h1.h3 Photo #{@photo.title} from #{@photo.album.title} album
+
+.thumbnail
+  gravatar_for current_user
+  .caption
+    %h2.h4= @photo.title
+    %p= @photo.caption

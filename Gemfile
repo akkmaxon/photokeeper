@@ -21,7 +21,7 @@ gem 'omniauth-github'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'byebug'
+  gem 'web-console'
 end
 
 group :development do

@@ -1,0 +1,9 @@
+%h1.h3 All your photos
+
+= @photos.each do |photo|
+  .thumbnail{style: 'width: 180px'}
+    = gravatar_for current_user
+    .caption
+      %h2.h4= photo.title
+      %small Album: #{photo.album.title}
+      %p= photo.caption
