@@ -13,5 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require_tree .
+
+$(window).load(function() {
+  $('.masonry').masonry({
+    itemSelector: '.thumbnail',
+    columnWidth: 240,
+    gutter: 24,
+    isFitWidth: true
+  });
+});

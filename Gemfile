@@ -21,10 +21,10 @@ gem 'omniauth-github'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'web-console'
 end
 
 group :development do
+  gem 'web-console'
   gem 'better_errors'
   gem 'spring'
   gem 'pry'

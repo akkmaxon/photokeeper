@@ -24,6 +24,10 @@ body#welcome {
   }
 }
 
+body#signed_in {
+  background-color: #f9f9f9;
+}
+
 aside {
   margin: 0 -15px 0 -15px;
   background-color: #2e2e2e;
@@ -34,4 +38,17 @@ aside {
 
 header nav {
   margin-bottom: 0;
+}
+
+main {
+  .masonry {
+    margin: 0 auto;
+    width: auto;
+  }
+  .thumbnail {
+    width: 240px;
+    img {
+      min-width: 100%;
+    }
+  }
 }

@@ -7,6 +7,25 @@ class PhotosController < ApplicationController
   end
 
   def show
+    #from album
+  end
+
+  def new
+    #from album
+  end
+
+  def create
+  end
+
+  def edit
+    #from album
+  end
+
+  def update
+  end
+
+  def destroy
+    #from album and from index
   end
 
   private
