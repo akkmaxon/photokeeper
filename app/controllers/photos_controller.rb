@@ -1,6 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_album, only: [:show]
-  before_action :set_photo, only: [:show]
+  before_action :set_album, :set_photo, only: [:show, :update, :destroy]
 
   def index
     @photos = current_user.photos
@@ -16,18 +15,25 @@ class PhotosController < ApplicationController
     else
       flash[:alert] = "Ooops, something went wrong, photo has not been saved. Repeat with other options"
     end
-    redirect_to album_photo_path(@photo.album.id, @photo.id)
-  end
-
-  def edit
-    #from album
+    redirect_to album_photo_path(@photo.album, @photo)
   end
 
   def update
+    if @photo.update(photo_params)
+      flash[:notice] = "Photo #{@photo.title} has been successfully updated"
+    else
+      flash[:alert] = "Ooops, something went wrong, photo has not been saved. Repeat with other options"
+    end
+    redirect_to album_photo_path(@album, @photo)
   end
 
   def destroy
-    #from album and from index
+    if @photo.destroy
+      flash[:notice] = "Photo '#{@photo.title}' was deleted"
+    else
+      flash[:alert] = "Photo was not deleted. Errors: #{@photo.errors.full_messages}"
+    end
+    redirect_to @photo.album
   end
 
   private

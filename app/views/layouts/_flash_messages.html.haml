@@ -2,3 +2,5 @@
   %p.alert.alert-success= notice
 - elsif alert.present?
   %p.alert.alert-danger= alert
+- elsif not user_signed_in?
+  %p{style: 'padding: 30px'}
