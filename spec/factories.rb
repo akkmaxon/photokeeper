@@ -14,4 +14,8 @@ FactoryGirl.define do
   factory :album do
     title Faker::Lorem.word
   end
+
+  factory :comment do
+    body Faker::Lorem.paragraph
+  end
 end
