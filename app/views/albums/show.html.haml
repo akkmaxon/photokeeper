@@ -1,3 +1,8 @@
+%ol.breadcrumb
+  %li
+    %a{href: albums_url} Albums
+  %li.active= @album.title
+
 .masonry
   - @photos.each do |photo|
     .thumbnail

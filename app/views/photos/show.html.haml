@@ -1,4 +1,9 @@
-%h1 Photo #{@photo.title} from #{@photo.album.title} album
+%ol.breadcrumb
+  %li
+    %a{href: albums_url} Albums
+  %li
+    %a{href: @photo.album}= @photo.album.title
+  %li.active= @photo.title
 
 .masonry
   .thumbnail
