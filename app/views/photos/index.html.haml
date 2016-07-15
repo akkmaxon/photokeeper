@@ -2,13 +2,4 @@
   %li.active Photos
 
 .masonry
-  - @photos.each do |photo|
-    .thumbnail
-      = gravatar_for current_user
-      .caption
-        %h2.h4= photo.title
-        %small.text-uppercase Album: #{photo.album.title}
-        %small.text-uppercase created_at: #{photo.created_at}
-        %small.text-uppercase updated_at: #{photo.updated_at}
-        %hr
-        %p= photo.caption
+  = render @photos

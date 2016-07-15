@@ -7,14 +7,16 @@ class PhotosController < ApplicationController
   end
 
   def show
-    #from album
-  end
-
-  def new
-    #from album
   end
 
   def create
+    @photo = Photo.new(photo_params)
+    if @photo.save
+      flash[:notice] = "Photo #{@photo.title} has been successfully uploaded"
+    else
+      flash[:alert] = "Ooops, something went wrong, photo has not been saved. Repeat with other options"
+    end
+    redirect_to album_photo_path(@photo.album.id, @photo.id)
   end
 
   def edit
@@ -29,6 +31,11 @@ class PhotosController < ApplicationController
   end
 
   private
+
+  def photo_params
+    photo = params.require(:photo).permit(:title, :caption)
+    photo.merge(album_id: params[:album_id], user_id: current_user.id)
+  end
 
   def set_album
     @album = Album.find(params[:album_id])

@@ -7,6 +7,7 @@
     %a{href: albums_url} Albums
   %li.active= @album.title
 
+/ modals
 #create-photo.modal.fade{tabindex: '-1', role: 'dialog'}
   .modal-dialog
     .modal-content
@@ -15,7 +16,11 @@
           %span{'aria-hidden' => 'true'} &times;
         %h1.h3 Upload New Photo
       .modal-body
-        %h2.h3 Something Very Important will be here
+        = simple_form_for(Photo.new, url: album_photos_path(@album.id), method: :post) do |f|
+          = f.input :title, class: 'form-control'
+          = f.input :caption, class: 'form-control'
+          .modal-footer
+            = f.button :submit
 
 #edit-album.modal.fade{tabindex: '-1', role: 'dialog'}
   .modal-dialog
@@ -38,18 +43,12 @@
           %span{'aria-hidden' => 'true'} &times;
         %h1.h3 Delete Album
       .modal-body
-        %h2.h3 This action will delete ALL photos inside this album. Are you sure???
+        %h2.h3 This action will delete ALL photos inside #{@album.title}.
+        %h2.h3.text-center.text-uppercase Are you sure???
       .modal-footer
         %button.btn.btn-default{data: {dismiss: 'modal'}} Really? Then NO!
         = link_to 'Delete', @album, method: :delete, class: 'btn btn-danger'
+/ end of modals
 
 .masonry
-  - @photos.each do |photo|
-    .thumbnail
-      = gravatar_for current_user
-      .caption
-        %h2.h4= photo.title
-        %small.text-uppercase created_at: #{photo.created_at}
-        %small.text-uppercase updated_at: #{photo.updated_at}
-        %hr
-        %p= photo.caption
+  = render @photos

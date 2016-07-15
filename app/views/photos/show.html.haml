@@ -2,12 +2,14 @@
   %li
     %a{href: albums_url} Albums
   %li
-    %a{href: @photo.album}= @photo.album.title
+    %a{href: album_path(@photo.album)}= @photo.album.title
   %li.active= @photo.title
 
-.masonry
-  .thumbnail
-    gravatar_for current_user
-    .caption
-      %h2.h4= @photo.title
-      %p= @photo.caption
+.thumbnail
+  = gravatar_for current_user
+  .caption
+    %h2.h4= @photo.title
+    %p= @photo.caption
+    %small.text-uppercase Album: #{@photo.album.title}
+    %small.text-uppercase created_at: #{@photo.created_at}
+    %small.text-uppercase updated_at: #{@photo.updated_at}
