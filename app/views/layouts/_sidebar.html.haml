@@ -3,6 +3,8 @@
     .panel-body.text-center
       .thumbnail
         = gravatar_for current_user
+        .caption
+          = current_user.full_name
       .btn-group.btn-group-xs
         %button.btn.btn-default Followers
         %button.btn.btn-default Following
