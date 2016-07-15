@@ -36,12 +36,45 @@
       .modal-footer
         %button.btn.btn-default{data: {dismiss: 'modal'}} Really? Then NO!
         = link_to 'Delete', album_photo_path(@photo.album, @photo), method: :delete, class: 'btn btn-danger'
+
+#comment-photo.modal.fade{tabindex: '-1', role: 'dialog'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h1.h3 Comment Photo
+      .modal-body
+        = simple_form_for(Comment.new, url: photo_comments_path(@photo), method: :post) do |f|
+          = f.input :body
+          .modal-footer
+            = f.button :submit
 / end of modals
-.thumbnail
-  = gravatar_for current_user
-  .caption
-    %h2.h4= @photo.title
-    %p= @photo.caption
-    %small.text-uppercase Album: #{@photo.album.title}
-    %small.text-uppercase created_at: #{@photo.created_at}
-    %small.text-uppercase updated_at: #{@photo.updated_at}
+
+#view-photo
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-sm-6.col-md-8.col-lg-9
+          = gravatar_for current_user
+        .col-sm-6.col-md-4.col-lg-3
+          %h2.h4= @photo.title
+          %p= @photo.caption
+          %hr
+          %p ALBUM: #{@photo.album.title}
+          %p CREATED_AT: #{@photo.created_at}
+          %p UPDATED_AT: #{@photo.updated_at}
+          %hr
+          %button.btn.btn-primary{data: {toggle: 'modal', target: '#comment-photo'}} Leave a Comment
+      .row
+        .col-sm-6.col-md-8.col-lg-9
+          #comments
+            - @comments.each do |comment|
+              %hr
+              %blockquote.blockquote
+                %p=comment.body
+                %footer
+                  .pull-right
+                    = comment.created_at
+                  = comment.user.full_name
+                  %span.glyphicon.glyphicon-comment

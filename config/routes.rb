@@ -6,6 +6,11 @@ Rails.application.routes.draw do
 
   get 'photos' => 'photos#index'
 
+  resources :photos, only: [] do
+    resources :comments, only: [:create, :destroy]
+  end
+
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'omniauth_callbacks'
   }

@@ -6,6 +6,7 @@ class PhotosController < ApplicationController
   end
 
   def show
+    @comments = @photo.comments
   end
 
   def create
