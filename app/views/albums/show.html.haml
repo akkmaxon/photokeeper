@@ -1,7 +1,47 @@
+.pull-right
+  %button.btn.btn-link{data: {toggle: 'modal', target: '#create-photo'}} Upload New Photo
+  %button.btn.btn-link{data: {toggle: 'modal', target: '#edit-album'}} Edit Album
+  %button.btn.btn-link{data: {toggle: 'modal', target: '#delete-album'}} Delete Album
 %ol.breadcrumb
   %li
     %a{href: albums_url} Albums
   %li.active= @album.title
+
+#create-photo.modal.fade{tabindex: '-1', role: 'dialog'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h1.h3 Upload New Photo
+      .modal-body
+        %h2.h3 Something Very Important will be here
+
+#edit-album.modal.fade{tabindex: '-1', role: 'dialog'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h1.h3 Edit Album
+      .modal-body
+        = simple_form_for(current_album, url: @album, method: :patch) do |f|
+          = f.input :title, class: 'form-control'
+          .modal-footer
+            = f.button :submit
+
+#delete-album.modal.fade{tabindex: '-1', role: 'dialog'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h1.h3 Delete Album
+      .modal-body
+        %h2.h3 This action will delete ALL photos inside this album. Are you sure???
+      .modal-footer
+        %button.btn.btn-default{data: {dismiss: 'modal'}} Really? Then NO!
+        = link_to 'Delete', @album, method: :delete, class: 'btn btn-danger'
 
 .masonry
   - @photos.each do |photo|

@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :set_album, only: [:show, :update, :destroy]
 
   def index
     @albums = current_user.albums
@@ -19,13 +19,23 @@ class AlbumsController < ApplicationController
     redirect_to albums_path
   end
 
-  def edit
-  end
-
   def update
+    if @album.update(album_params)
+      flash[:notice] = "Album '#{@album.title}' has been successfully updated"
+    else
+      flash[:alert] = "Ooops, something went wrong, album has not been saved. Repeat with other options"
+    end
+    redirect_to albums_path
   end
 
   def destroy
+    photos_count = @album.photos.count
+    if @album.destroy
+      flash[:notice] = "Album '#{@album.title}' with #{photos_count} photos was deleted"
+    else
+      flash[:alert] = "Album was not deleted. Errors: #{@album.errors.full_messages}"
+    end
+    redirect_to albums_path
   end
 
   private

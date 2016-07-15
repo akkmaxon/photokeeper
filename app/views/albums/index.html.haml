@@ -3,7 +3,7 @@
 %ol.breadcrumb
   %li.active Albums
 
-#create-album.modal.fade{'tabindex' => '-1', 'role' => 'dialog'}
+#create-album.modal.fade{tabindex: '-1', role: 'dialog'}
   .modal-dialog
     .modal-content
       .modal-header
@@ -20,7 +20,8 @@
 .masonry
   - @albums.each do |album|
     .thumbnail
-      = gravatar_for current_user
+      = link_to album do
+        = gravatar_for current_user
       %hr
       .caption
         = link_to album, class: 'btn btn-primary pull-right' do

@@ -17,6 +17,10 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+a.btn {
+  margin: 5px;
+}
+
 body#welcome {
   background-image: url('background.png');
   .jumbotron, .panel {
