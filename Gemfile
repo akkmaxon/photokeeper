@@ -18,6 +18,7 @@ gem 'haml-rails', '~> 0.9.0'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'carrierwave'
+gem 'fog'
 
 
 group :development, :test do
