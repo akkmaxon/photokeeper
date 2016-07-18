@@ -1,0 +1,12 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+        %span{'aria-hidden' => 'true'} &times;
+      %h1.h3 Edit Album
+    .modal-body
+      = simple_form_for(current_album, url: @album, method: :patch) do |f|
+        = f.input :title, class: 'form-control'
+        .modal-footer
+          = f.button :submit
+

@@ -1,0 +1,11 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+        %span{'aria-hidden' => 'true'} &times;
+      %h1.h3 Create New Album
+    .modal-body
+      = simple_form_for(Album.new, url: albums_path, method: :post) do |f|
+        = f.input :title, class: 'form-control'
+        .modal-footer
+          = f.button :submit

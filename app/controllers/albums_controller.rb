@@ -21,7 +21,7 @@ class AlbumsController < ApplicationController
 
   def update
     if @album.update(album_params)
-      flash[:notice] = "Album '#{@album.title}' has been successfully updated"
+      flash[:notice] = "The album has been successfully updated"
     else
       flash[:alert] = "Ooops, something went wrong, album has not been saved. Repeat with other options"
     end

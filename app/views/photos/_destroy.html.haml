@@ -1,0 +1,13 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+        %span{'aria-hidden' => 'true'} &times;
+      %h1.h3 Delete Photo
+    .modal-body.text-center
+      %h2.h3 This action will delete '#{@photo.title}'.
+      %h2.h3.text-uppercase Are you sure???
+    .modal-footer
+      %button.btn.btn-default{data: {dismiss: 'modal'}} Really? Then NO!
+      = link_to 'Delete', album_photo_path(@photo.album, @photo), method: :delete, class: 'btn btn-danger'
+

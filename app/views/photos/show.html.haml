@@ -8,49 +8,14 @@
     %a{href: album_path(@photo.album)}= @photo.album.title
   %li.active= @photo.title
 
-/ modals
 #edit-photo.modal.fade{tabindex: '-1', role: 'dialog'}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
-          %span{'aria-hidden' => 'true'} &times;
-        %h1.h3 Edit Photo
-      .modal-body
-        = simple_form_for(@photo, url: album_photo_path(@photo.album, @photo), method: :patch, html: { multipart: true }) do |f|
-          = f.input :title, class: 'form-control'
-          = f.input :source, as: :file
-          = f.input :caption, class: 'form-control'
-          .modal-footer
-            = f.button :submit
+  = render 'photos/edit'
 
 #delete-photo.modal.fade{tabindex: '-1', role: 'dialog'}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
-          %span{'aria-hidden' => 'true'} &times;
-        %h1.h3 Delete Photo
-      .modal-body.text-center
-        %h2.h3 This action will delete '#{@photo.title}'.
-        %h2.h3.text-uppercase Are you sure???
-      .modal-footer
-        %button.btn.btn-default{data: {dismiss: 'modal'}} Really? Then NO!
-        = link_to 'Delete', album_photo_path(@photo.album, @photo), method: :delete, class: 'btn btn-danger'
+  = render 'photos/destroy'
 
 #comment-photo.modal.fade{tabindex: '-1', role: 'dialog'}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
-          %span{'aria-hidden' => 'true'} &times;
-        %h1.h3 Comment Photo
-      .modal-body
-        = simple_form_for(Comment.new, url: photo_comments_path(@photo), method: :post) do |f|
-          = f.input :body
-          .modal-footer
-            = f.button :submit
-/ end of modals
+  = render 'photos/comment_form'
 
 #view-photo
   .panel.panel-default

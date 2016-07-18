@@ -1,0 +1,14 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+        %span{'aria-hidden' => 'true'} &times;
+      %h1.h3 Upload New Photo
+    .modal-body
+      = simple_form_for(Photo.new, url: album_photos_path(@album.id), method: :post, html: { multipart: true }) do |f|
+        = f.input :title, class: 'form-control'
+        = f.input :source, as: :file
+        = f.input :caption, class: 'form-control'
+        .modal-footer
+          = f.button :submit
+

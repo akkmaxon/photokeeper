@@ -1,0 +1,12 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+        %span{'aria-hidden' => 'true'} &times;
+      %h1.h3 Comment Photo
+    .modal-body
+      = simple_form_for(Comment.new, url: photo_comments_path(@photo), method: :post) do |f|
+        = f.input :body
+        .modal-footer
+          = f.button :submit
+
