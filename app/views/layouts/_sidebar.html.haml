@@ -2,12 +2,16 @@
   %aside.panel.panel-default
     .panel-body.text-center
       .thumbnail
-        = gravatar_for current_user
+        = avatar_for current_user
         .caption
           = current_user.full_name
       .btn-group.btn-group-xs
-        %button.btn.btn-default Followers
-        %button.btn.btn-default Following
+        %button.btn.btn-default
+          Followers
+          %span.badge= current_user.followers.count
+        %button.btn.btn-default
+          Following
+          %span.badge= current_user.following.count
       %ul.nav.nav-pills.nav-stacked
         %li{class: controller_name == 'feed' ? 'active' : ''}
           %a{href: '#'} Feed

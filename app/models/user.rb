@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
     #confirmable,
     :lockable,
     :omniauthable
+  mount_uploader :avatar, UserAvatarUploader
 
   validates :full_name, length: { maximum: 128 }
 
