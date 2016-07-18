@@ -21,7 +21,10 @@
   - @albums.each do |album|
     .thumbnail
       = link_to album do
-        = gravatar_for current_user
+        - if album.photos.any?
+          = image_tag album.photos.first.source.url 
+        - else
+          = image_tag ''
       %hr
       .caption
         = link_to album, class: 'btn btn-primary pull-right' do

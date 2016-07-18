@@ -9,6 +9,7 @@ FactoryGirl.define do
   factory :photo do
     title Faker::Lorem.sentence
     caption Faker::Lorem.paragraph
+    source Faker::Internet.url
   end
 
   factory :album do

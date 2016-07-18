@@ -17,8 +17,9 @@
           %span{'aria-hidden' => 'true'} &times;
         %h1.h3 Edit Photo
       .modal-body
-        = simple_form_for(current_photo, url: album_photo_path(@photo.album, @photo), method: :patch) do |f|
+        = simple_form_for(@photo, url: album_photo_path(@photo.album, @photo), method: :patch, html: { multipart: true }) do |f|
           = f.input :title, class: 'form-control'
+          = f.input :source, as: :file
           = f.input :caption, class: 'form-control'
           .modal-footer
             = f.button :submit
@@ -56,7 +57,8 @@
     .panel-body
       .row
         .col-sm-6.col-md-8.col-lg-9
-          = gravatar_for current_user
+          = link_to @photo.source.url, target: '_blank' do
+            = image_tag @photo.source.url
         .col-sm-6.col-md-4.col-lg-3
           %h2.h4= @photo.title
           %p= @photo.caption

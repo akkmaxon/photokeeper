@@ -17,6 +17,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'haml-rails', '~> 0.9.0'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+gem 'carrierwave'
 
 
 group :development, :test do
