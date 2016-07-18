@@ -7,16 +7,4 @@
   = render 'albums/new'
 
 .masonry
-  - @albums.each do |album|
-    .thumbnail
-      = link_to album do
-        - if album.photos.any?
-          = image_tag album.photos.first.source.url 
-        - else
-          = image_tag ''
-      %hr
-      .caption
-        = link_to album, class: 'btn btn-primary pull-right' do
-          Photos
-          %span.badge= album.photos.count
-        %h2.h4= album.title
+  = render @albums

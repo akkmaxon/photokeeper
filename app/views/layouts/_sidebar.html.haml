@@ -16,7 +16,9 @@
         %li{class: controller_name == 'feed' ? 'active' : ''}
           %a{href: '#'} Feed
         %li{class: controller_name == 'albums' ? 'active' : ''}
-          %a{href: albums_url} Albums
+          = link_to albums_url do
+            Albums
+            %span.badge= current_user.albums.count
         %li{class: controller_name == 'registrations' ? 'active' : ''}
           %a{href: edit_user_registration_url} Settings
         %hr
