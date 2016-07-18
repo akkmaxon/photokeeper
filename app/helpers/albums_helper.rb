@@ -1,5 +1,5 @@
 module AlbumsHelper
   def current_album
-    Album.find(params[:id])
+    Album.find(params[:album_id])
   end
 end

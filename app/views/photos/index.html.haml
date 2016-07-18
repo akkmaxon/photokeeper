@@ -1,5 +1,55 @@
+.pull-right
+  %button.btn.btn-link{data: {toggle: 'modal', target: '#create-photo'}} Upload New Photo
+  %button.btn.btn-link{data: {toggle: 'modal', target: '#edit-album'}} Edit Album
+  %button.btn.btn-link{data: {toggle: 'modal', target: '#delete-album'}} Delete Album
 %ol.breadcrumb
-  %li.active Photos
+  %li
+    %a{href: albums_url} Albums
+  %li.active= @album.title
+
+/ modals
+#create-photo.modal.fade{tabindex: '-1', role: 'dialog'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h1.h3 Upload New Photo
+      .modal-body
+        = simple_form_for(Photo.new, url: album_photos_path(@album.id), method: :post, html: { multipart: true }) do |f|
+          = f.input :title, class: 'form-control'
+          = f.input :source, as: :file
+          = f.input :caption, class: 'form-control'
+          .modal-footer
+            = f.button :submit
+
+#edit-album.modal.fade{tabindex: '-1', role: 'dialog'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h1.h3 Edit Album
+      .modal-body
+        = simple_form_for(current_album, url: @album, method: :patch) do |f|
+          = f.input :title, class: 'form-control'
+          .modal-footer
+            = f.button :submit
+
+#delete-album.modal.fade{tabindex: '-1', role: 'dialog'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}, 'aria-label' => 'Close'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h1.h3 Delete Album
+      .modal-body.text-center
+        %h2.h3 This action will delete '#{@album.title}' with ALL photos inside it.
+        %h2.h3.text-uppercase Are you sure???
+      .modal-footer
+        %button.btn.btn-default{data: {dismiss: 'modal'}} Really? Then NO!
+        = link_to 'Delete', @album, method: :delete, class: 'btn btn-danger'
+/ end of modals
 
 .masonry
   = render @photos
