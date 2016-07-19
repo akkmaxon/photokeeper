@@ -1,10 +1,11 @@
-.pull-right
-  %button.btn.btn-link{data: {toggle: 'modal', target: '#create-photo'}} Upload New Photo
-  %button.btn.btn-link{data: {toggle: 'modal', target: '#edit-album'}} Edit Album
-  %button.btn.btn-link{data: {toggle: 'modal', target: '#delete-album'}} Delete Album
+- if @username == snake_case(current_user.full_name)
+  .pull-right
+    %button.btn.btn-link{data: {toggle: 'modal', target: '#create-photo'}} Upload New Photo
+    %button.btn.btn-link{data: {toggle: 'modal', target: '#edit-album'}} Edit Album
+    %button.btn.btn-link{data: {toggle: 'modal', target: '#delete-album'}} Delete Album
 %ol.breadcrumb
   %li
-    %a{href: root_url}= full_name_from_params(@username)
+    %a{href: feed_url(@username)}= full_name_from_params(@username)
   %li
     %a{href: albums_url(@username)} Albums
   %li.active= @album.title

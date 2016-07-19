@@ -1,5 +1,6 @@
-.pull-right
-  %button.btn.btn-link{data: {toggle: 'modal', target: '#create-album'}} Create New Album
+- if @username == snake_case(current_user.full_name)
+  .pull-right
+    %button.btn.btn-link{data: {toggle: 'modal', target: '#create-album'}} Create New Album
 %ol.breadcrumb
   %li
     %a{href: feed_url(@username)}= full_name_from_params(@username)

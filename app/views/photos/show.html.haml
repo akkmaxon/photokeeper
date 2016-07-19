@@ -1,9 +1,10 @@
-.pull-right
-  %button.btn.btn-link{data: {toggle: 'modal', target: '#edit-photo'}} Edit Photo
-  %button.btn.btn-link{data: {toggle: 'modal', target: '#delete-photo'}} Delete Photo
+- if @username == snake_case(current_user.full_name)
+  .pull-right
+    %button.btn.btn-link{data: {toggle: 'modal', target: '#edit-photo'}} Edit Photo
+    %button.btn.btn-link{data: {toggle: 'modal', target: '#delete-photo'}} Delete Photo
 %ol.breadcrumb
   %li
-    %a{href: root_url}= full_name_from_params(@username)
+    %a{href: feed_url(@username)}= full_name_from_params(@username)
   %li
     %a{href: albums_url(@username)} Albums
   %li
