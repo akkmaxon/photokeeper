@@ -4,7 +4,9 @@
   %button.btn.btn-link{data: {toggle: 'modal', target: '#delete-album'}} Delete Album
 %ol.breadcrumb
   %li
-    %a{href: albums_url} Albums
+    %a{href: root_url}= full_name_from_params(@username)
+  %li
+    %a{href: albums_url(@username)} Albums
   %li.active= @album.title
 
 #create-photo.modal.fade{tabindex: '-1', role: 'dialog'}

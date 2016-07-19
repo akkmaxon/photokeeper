@@ -6,7 +6,7 @@
       %h1.h3 Edit Photo
     .modal-body
       %a{href: "#", onclick: "return launchEditor('editableimage', 'http://localhost:3000#{@photo.source.url}');"} Change a source
-      = simple_form_for(@photo, url: album_photo_path(@photo.album, @photo), method: :patch, html: { multipart: true }) do |f|
+      = simple_form_for(@photo, url: album_photo_path(@username, @photo.album, @photo), method: :patch, html: { multipart: true }) do |f|
         = f.input :title, class: 'form-control'
         = f.input :source, as: :file
         = f.input :caption, class: 'form-control'

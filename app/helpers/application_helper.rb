@@ -8,4 +8,14 @@ module ApplicationHelper
 		 end
     image_tag avatar_url, alt: user.full_name, id: 'avatar'
   end
+
+  def snake_case(name)
+    name.gsub(' ', '_').downcase
+  end
+
+  def full_name_from_params(username)
+    names = username.split '_'
+    names.map! { |n| n.capitalize }
+    names.join ' '
+  end
 end

@@ -6,7 +6,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    redirect_to album_photos_url(@album)
+    redirect_to album_photos_url(@username, @album)
   end
 
   def create
@@ -16,7 +16,7 @@ class AlbumsController < ApplicationController
     else
       flash[:alert] = "Ooops, something went wrong, album has not been saved. Repeat with other options"
     end
-    redirect_to @album
+    redirect_to album_url(@username, @album)
   end
 
   def update
@@ -25,7 +25,7 @@ class AlbumsController < ApplicationController
     else
       flash[:alert] = "Ooops, something went wrong, album has not been saved. Repeat with other options"
     end
-    redirect_to :back
+    redirect_to album_url(@username, @album)
   end
 
   def destroy
@@ -35,7 +35,7 @@ class AlbumsController < ApplicationController
     else
       flash[:alert] = "Album was not deleted. Errors: #{@album.errors.full_messages}"
     end
-    redirect_to albums_path
+    redirect_to albums_path(@username)
   end
 
   private

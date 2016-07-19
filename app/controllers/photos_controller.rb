@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
     else
       flash[:alert] = "Ooops, something went wrong, photo has not been saved. Repeat with other options"
     end
-    redirect_to album_photo_path(@photo.album, @photo)
+    redirect_to album_photo_path(@username, @photo.album, @photo)
   end
 
   def update
@@ -26,7 +26,7 @@ class PhotosController < ApplicationController
     else
       flash[:alert] = "Ooops, something went wrong, photo has not been saved. Repeat with other options"
     end
-    redirect_to :back
+    redirect_to album_photo_path(@username, @photo.album, @photo)
   end
 
   def destroy
@@ -35,7 +35,7 @@ class PhotosController < ApplicationController
     else
       flash[:alert] = "Photo was not deleted. Errors: #{@photo.errors.full_messages}"
     end
-    redirect_to @photo.album
+    redirect_to album_path(@username, @photo.album)
   end
 
   private

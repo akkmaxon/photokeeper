@@ -9,5 +9,5 @@
       %h2.h3.text-uppercase Are you sure???
     .modal-footer
       %button.btn.btn-default{data: {dismiss: 'modal'}} Really? Then NO!
-      = link_to 'Delete', album_photo_path(@photo.album, @photo), method: :delete, class: 'btn btn-danger'
+      = link_to 'Delete', album_photo_path(@username, @photo.album, @photo), method: :delete, class: 'btn btn-danger'
 

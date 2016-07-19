@@ -1,4 +1,6 @@
 %ol.breadcrumb
+  %li
+    %a{href: feed_url(@username)}= full_name_from_params(@username)
   %li.active Following
 
 .masonry

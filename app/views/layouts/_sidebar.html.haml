@@ -3,20 +3,18 @@
     .panel-body.text-center
       = render partial: 'users/user', object: current_user
       .btn-group.btn-group-xs
-        %a.btn.btn-default{href: followers_url}
+        %a.btn.btn-default{href: followers_url(username: snake_case(current_user.full_name))}
           Followers
           %span.badge= current_user.followers.count
-        %a.btn.btn-default{href: following_url}
+        %a.btn.btn-default{href: following_url(username: snake_case(current_user.full_name))}
           Following
           %span.badge= current_user.following.count
       %ul.nav.nav-pills.nav-stacked
-        %li{class: controller_name == 'feed' ? 'active' : ''}
-          %a{href: feed_url} Feed
-        %li{class: controller_name == 'albums' ? 'active' : ''}
-          = link_to albums_url do
-            Albums
-            %span.badge= current_user.albums.count
-        %li{class: controller_name == 'registrations' ? 'active' : ''}
+        %li
+          %a{href: feed_url(username: snake_case(current_user.full_name))} Feed
+        %li
+          %a{href: albums_url(username: snake_case(current_user.full_name))} Albums
+        %li
           %a{href: edit_user_registration_url} Settings
         %hr
         %li

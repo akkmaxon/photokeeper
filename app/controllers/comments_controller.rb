@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     else
       flash[:alert] = 'My apologies, try again'
     end
-    redirect_to album_photo_path(@comment.photo.album, @comment.photo)
+    redirect_to album_photo_path(@username, @comment.photo.album, @comment.photo)
   end
 
   private
