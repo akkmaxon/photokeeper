@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     name.gsub(' ', '_').downcase
   end
 
-  def full_name_from_params(username = 'undefined_user')
+  def full_name_from_params(username)
     names = username.split '_'
     names.map! { |n| n.capitalize }
     names.join ' '
