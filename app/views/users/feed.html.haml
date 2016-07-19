@@ -1,5 +1,10 @@
 %ol.breadcrumb
   %li.active= full_name_from_params(@username)
 
-%h1 Users#feed
-%p Find me in app/views/users/feed.html.haml
+- @objects.each do |obj|
+  - if obj.respond_to? :source
+    = render partial: 'users/feed_photo', locals: { photo: obj }
+  - elsif obj.respond_to? :body
+    = render partial: 'users/feed_comment', locals: { comment: obj }
+  - else
+    = render partial: 'users/feed_album', locals: { album: obj }

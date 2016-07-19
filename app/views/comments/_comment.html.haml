@@ -1,0 +1,8 @@
+%hr
+%blockquote.blockquote
+  %p=comment.body
+  %footer
+    .pull-right
+      = comment.created_at
+    = comment.user.full_name
+    %span.glyphicon.glyphicon-comment

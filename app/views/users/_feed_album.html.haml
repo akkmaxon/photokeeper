@@ -1,0 +1,19 @@
+.panel.panel-primary
+  .panel-heading
+    = album.user.full_name
+    - if album.updated_at > album.created_at
+      updated album
+    - else
+      created new album
+    = time_ago_in_words(album.updated_at)
+    ago
+  .panel-body
+    .row
+      .col-xs-6
+        = link_to album_url(snake_case(album.user.full_name), album) do
+          = image_tag album.photos.first.source.url, style: 'width: 100%'
+      .col-xs-6
+        %h2.h4= album.title
+        %hr
+        .pull-right
+          = pluralize(album.photos.count, 'photo')

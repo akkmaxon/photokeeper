@@ -25,7 +25,6 @@
     .panel-body
       .row
         .col-sm-6.col-md-8.col-lg-9
-
           = image_tag @photo.source.url, id: "editableimage"
         .col-sm-6.col-md-4.col-lg-3
           %h2.h4= @photo.title
@@ -39,12 +38,4 @@
       .row
         .col-sm-6.col-md-8.col-lg-9
           #comments
-            - @comments.each do |comment|
-              %hr
-              %blockquote.blockquote
-                %p=comment.body
-                %footer
-                  .pull-right
-                    = comment.created_at
-                  = comment.user.full_name
-                  %span.glyphicon.glyphicon-comment
+            = render @comments
