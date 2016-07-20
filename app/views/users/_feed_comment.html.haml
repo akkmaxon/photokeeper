@@ -1,12 +1,12 @@
-.panel.panel-primary
+.panel.panel-default
   .panel-heading
+    = time_ago_in_words(comment.updated_at)
+    ago:
     = author(comment.user)
     commented
-    = link_to comment.photo.title, album_photo_url(snake_case(comment.photo.user.full_name), comment.photo.album, comment.photo), style: 'color: white; font-weight: bold'
+    = link_to comment.photo.title, album_photo_url(snake_case(comment.photo.user.full_name), comment.photo.album, comment.photo), style: 'font-weight: bold'
     of #{author(comment.photo.user)}
-    = time_ago_in_words(comment.updated_at)
-    ago
   .panel-body
     .row
-      .col-xs-6
+      .col-md-6
         = render partial: 'comments/comment', object: comment

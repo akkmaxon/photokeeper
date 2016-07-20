@@ -1,12 +1,12 @@
 .panel.panel-primary
   .panel-heading
+    = time_ago_in_words(photo.updated_at)
+    ago:
     = author(photo.user)
     - if photo.updated_at > photo.created_at
       updated photo
     - else
       added new photo
-    = time_ago_in_words(photo.updated_at)
-    ago
   .panel-body
     .row
       .col-xs-6
