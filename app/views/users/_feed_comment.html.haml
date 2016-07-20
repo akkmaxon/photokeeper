@@ -4,8 +4,9 @@
     ago:
     = author(comment.user)
     commented
+    = possessive_words(comment)
+    photo
     = link_to comment.photo.title, album_photo_url(snake_case(comment.photo.user.full_name), comment.photo.album, comment.photo), style: 'font-weight: bold'
-    of #{author(comment.photo.user)}
   .panel-body
     .row
       .col-md-6
