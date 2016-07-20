@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   }
 
   get 'search' => 'users#index'
+  resources :relationships, only: [:create, :destroy]
 
   root 'static_pages#welcome'
 end

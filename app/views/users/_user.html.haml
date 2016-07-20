@@ -1,10 +1,15 @@
 .thumbnail
   = avatar_for user
   .caption
-    = user.full_name
+    .text-center= user.full_name
     - unless user == current_user
-      %br
+      %hr
       = link_to albums_url(snake_case(user.full_name)), class: 'btn btn-primary pull-right' do
         Albums
         %span.badge= user.albums.count
       = link_to 'Feed', feed_url(snake_case(user.full_name)), class: 'btn btn-link'
+      %hr{style: 'width: 50%; margin-left: 0'}
+      - if current_user.following.include? user
+        = render partial: 'unfollow', locals: { user: user }
+      - else
+        = render partial: 'follow', locals: { user: user }
