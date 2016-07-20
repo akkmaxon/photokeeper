@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :set_username
 
   def create
     @comment = Comment.new(comments_params)

@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   before_action :set_album
   before_action :set_photo, only: [:show, :update, :destroy]
+  before_action :set_username
 
   def index
     @photos = @album.photos

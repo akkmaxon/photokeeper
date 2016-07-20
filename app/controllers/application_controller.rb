@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate_user!
-  before_action :set_username
 
   def set_username
     @username = snake_case(find_user.full_name)
@@ -14,14 +13,19 @@ class ApplicationController < ActionController::Base
     name.gsub(' ', '_').downcase
   end
 
-  def full_name_from_params(username)
-    username = current_user.full_name unless username
+  def full_name_from_params(params)
+    username = params[:username]
+    if params[:album_id]
+      album_id = params[:album_id]
+      owner_of_album = snake_case(Album.find(album_id).user.full_name)
+      username = owner_of_album unless username == owner_of_album
+    end
     names = username.split '_'
     names.map! { |n| n.capitalize }
     names.join ' '
   end
 
   def find_user
-    User.find_by(full_name: full_name_from_params(params[:username])) || current_user
+    User.find_by(full_name: full_name_from_params(params)) || current_user
   end
 end

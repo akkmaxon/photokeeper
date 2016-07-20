@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :update, :destroy]
+  before_action :set_username
 
   def index
     @albums = find_user.albums
