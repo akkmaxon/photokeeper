@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   scope ':username' do
+    get 'search' => 'users#index'
     get 'feed' => 'users#feed'
     get 'following' => 'users#following'
     get 'followers' => 'users#followers'

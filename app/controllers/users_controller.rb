@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_username
 
+  def index
+    @users = search(params[:search])
+  end
+
   def feed
     all = []
     %w[ photos comments albums ].each do |obj|
@@ -20,6 +24,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def search(keywords)
+    User.where('full_name ilike ?', "%#{keywords}%")
+  end
 
   def find_objects(objects)
     result = []
