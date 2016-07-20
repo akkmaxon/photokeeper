@@ -22,7 +22,7 @@ a.btn {
 }
 
 body#welcome {
-  background: url('background.jpg') repeat-x center top;
+  background: asset-url('background.jpg') repeat-x center top;
   .jumbotron, .panel {
     box-shadow: 10px -10px 10px, -10px 10px 10px;
   }
