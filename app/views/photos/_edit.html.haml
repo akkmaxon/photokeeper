@@ -5,7 +5,7 @@
         %span{'aria-hidden' => 'true'} &times;
       %h1.h3 Edit Photo
     .modal-body
-      %a{href: "#", onclick: "return launchEditor('editableimage', 'http://localhost:3000#{@photo.source.url}');"} Change a source
+      %a{href: "#", onclick: "return launchEditor('editableimage', '#{@photo.source.url}');"} Change a source
       = simple_form_for(@photo, url: album_photo_path(@username, @photo.album, @photo), method: :patch, html: { multipart: true }) do |f|
         = f.input :title, class: 'form-control'
         = f.input :source, as: :file
