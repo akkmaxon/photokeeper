@@ -30,12 +30,12 @@
           %h2.h4= @photo.title
           %p= @photo.caption
           %hr
-          %p ALBUM: #{@photo.album.title}
-          %p CREATED_AT: #{@photo.created_at}
-          %p UPDATED_AT: #{@photo.updated_at}
-          %hr
           %button.btn.btn-primary{data: {toggle: 'modal', target: '#comment-photo'}} Leave a Comment
       .row
         .col-sm-6.col-md-8.col-lg-9
           #comments
-            = render @comments
+            %hr
+            - if @comments.empty?
+              %p No comments yet
+            - else
+              = render @comments
