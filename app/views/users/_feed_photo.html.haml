@@ -1,23 +1,24 @@
-.panel.panel-primary
-  .panel-heading
-    = time_ago_in_words(photo.updated_at)
-    ago:
-    = author(photo.user)
-    - if photo.updated_at > photo.created_at
-      updated photo
-    - else
-      added new photo
-  .panel-body
-    .row
-      .col-xs-6
-        = link_to album_photo_url(snake_case(photo.user.full_name), photo.album, photo) do
-          = image_tag photo.source.url, style: 'width: 100%'
-      .col-xs-6
-        %h2.h4= photo.title
-        %p= photo.caption
-        %hr
-        .pull-right
-          = pluralize(photo.comments.count, 'comment')
-        Album: 
-        = link_to album_url(snake_case(photo.user.full_name), photo.album) do
-          = photo.album.title
+.feed_photo
+  .panel.panel-primary
+    .panel-heading
+      = time_ago_in_words(photo.updated_at)
+      ago:
+      = author(photo.user)
+      - if photo.updated_at > photo.created_at
+        updated photo
+      - else
+        added new photo
+    .panel-body
+      .row
+        .col-xs-6
+          = link_to album_photo_url(snake_case(photo.user.full_name), photo.album, photo) do
+            = image_tag photo.source.url, style: 'width: 100%'
+        .col-xs-6
+          %h2.h4= photo.title
+          %p= photo.caption
+          %hr
+          .pull-right
+            = pluralize(photo.comments.count, 'comment')
+          Album: 
+          = link_to album_url(snake_case(photo.user.full_name), photo.album) do
+            = photo.album.title

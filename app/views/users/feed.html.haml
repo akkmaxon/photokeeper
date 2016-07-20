@@ -1,6 +1,17 @@
 %ol.breadcrumb
   %li.active= full_name_from_params(@username)
 
+%header#feed-links
+  %ul.nav.nav-tabs
+    %li.active#all
+      %a{href: '#show-all'} All
+    %li#photos
+      %a{href: '#show-photos'} Photos
+    %li#albums
+      %a{href: '#show-albums'} Albums
+    %li#comments
+      %a{href: '#show-comments'} Comments
+%br
 - @objects.each do |obj|
   - if obj.respond_to? :source
     = render partial: 'users/feed_photo', locals: { photo: obj }

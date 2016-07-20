@@ -1,13 +1,14 @@
-.panel.panel-default
-  .panel-heading
-    = time_ago_in_words(comment.updated_at)
-    ago:
-    = author(comment.user)
-    commented
-    = possessive_words(comment)
-    photo
-    = link_to comment.photo.title, album_photo_url(snake_case(comment.photo.user.full_name), comment.photo.album, comment.photo), style: 'font-weight: bold'
-  .panel-body
-    .row
-      .col-md-6
-        = render partial: 'comments/comment', object: comment
+.feed_comment
+  .panel.panel-default
+    .panel-heading
+      = time_ago_in_words(comment.updated_at)
+      ago:
+      = author(comment.user)
+      commented
+      = possessive_words(comment)
+      photo
+      = link_to comment.photo.title, album_photo_url(snake_case(comment.photo.user.full_name), comment.photo.album, comment.photo), style: 'font-weight: bold'
+    .panel-body
+      .row
+        .col-md-6
+          = render partial: 'comments/comment', object: comment
