@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   before_action :set_username
 
   def feed
-    @objects = []
+    all = []
     %w[ photos comments albums ].each do |obj|
       find_objects(obj).each do |o|
-	@objects << o
+	all << o
       end
     end
-    @objects.sort { |a,b| b.updated_at <=> a.updated_at }
+    @objects = all.sort { |a,b| b.updated_at <=> a.updated_at }
   end
 
   def following
@@ -37,11 +37,11 @@ class UsersController < ApplicationController
   def extract_objects(user, table)
     case table
     when 'photos'
-      user.photos.where("updated_at > ?", not_before_date).to_a
+      user.photos.where("updated_at > ?", not_before_date)
     when 'albums'
-      user.albums.where("updated_at > ?", not_before_date).to_a
+      user.albums.where("updated_at > ?", not_before_date)
     when 'comments'
-      user.comments.where("updated_at > ?", not_before_date).to_a
+      user.comments.where("updated_at > ?", not_before_date)
     end
   end
 
