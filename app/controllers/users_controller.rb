@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def feed
     @objects = []
-    [find_photos, find_comments, find_albums].each do |obj|
-      obj.each do |o|
+    %w[ photos comments albums ].each do |obj|
+      find_objects(obj).each do |o|
 	@objects << o
       end
     end
@@ -21,43 +21,28 @@ class UsersController < ApplicationController
 
   private
 
-  def find_photos
-    photos = []
-    followings_photos = []
-    own_photos = find_user.photos.where("updated_at > ?", not_before_date).to_a
+  def find_objects(objects)
+    result = []
+    followings_objects = []
+    own_objects = extract_objects(find_user, objects)
     find_user.following.each do |following|
-      followings_photos << following.photos.where("updated_at > ?", not_before_date).to_a
+      followings_objects << extract_objects(following, objects)
     end
-    [own_photos, followings_photos.flatten].each do |photo|
-      photo.each { |p| photos << p }
+    [own_objects, followings_objects.flatten].each do |obj|
+      obj.each { |o| result << o }
     end
-    photos
+    result
   end
 
-  def find_comments
-    comments = []
-    followings_comments = []
-    own_comments = find_user.comments.where("updated_at > ?", not_before_date).to_a
-    find_user.following.each do |following|
-      followings_comments << following.comments.where("updated_at > ?", not_before_date).to_a
+  def extract_objects(user, table)
+    case table
+    when 'photos'
+      user.photos.where("updated_at > ?", not_before_date).to_a
+    when 'albums'
+      user.albums.where("updated_at > ?", not_before_date).to_a
+    when 'comments'
+      user.comments.where("updated_at > ?", not_before_date).to_a
     end
-    [own_comments, followings_comments.flatten].each do |comment|
-      comment.each { |c| comments << c }
-    end
-    comments
-  end
-
-  def find_albums
-    albums = []
-    followings_albums = []
-    own_albums = find_user.albums.where("updated_at > ?", not_before_date).to_a
-    find_user.following.each do |following|
-      followings_albums << following.albums.where("updated_at > ?", not_before_date).to_a
-    end
-    [own_albums, followings_albums.flatten].each do |album|
-      album.each { |a| albums << a }
-    end
-    albums
   end
 
   def not_before_date(days = 3)
