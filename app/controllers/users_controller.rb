@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_username
+  before_action :set_username, except: :index
 
   def index
     @users = search(params[:search])
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   private
 
   def search(keywords)
-    User.where('full_name ilike ?', "%#{keywords}%")
+    User.where('full_name ilike ? and full_name != ?', "%#{keywords}%", current_user.full_name)
   end
 
   def find_objects(objects)

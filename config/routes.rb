@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   scope ':username' do
-    get 'search' => 'users#index'
     get 'feed' => 'users#feed'
     get 'following' => 'users#following'
     get 'followers' => 'users#followers'
@@ -19,5 +18,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'omniauth_callbacks',
     registrations: 'users/registrations'
   }
+
+  get 'search' => 'users#index'
+
   root 'static_pages#welcome'
 end
