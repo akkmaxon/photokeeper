@@ -1,6 +1,6 @@
 .panel.panel-primary
   .panel-heading
-    = photo.user.full_name
+    = author(photo.user)
     - if photo.updated_at > photo.created_at
       updated photo
     - else
@@ -21,4 +21,3 @@
         Album: 
         = link_to album_url(snake_case(photo.user.full_name), photo.album) do
           = photo.album.title
-
