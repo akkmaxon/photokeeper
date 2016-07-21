@@ -9,10 +9,9 @@
         = f.input :title, class: 'form-control'
         = f.input :caption, class: 'form-control'
         = f.input :source, as: :file
+        or
+        = f.input :remote_source_url
         %hr
         %a.btn.btn-primary{href: "#", onclick: "return launchEditor('editableimage', '#{@photo.source.url}');"} Use photo editor
-        #editing-result
-          = label_tag 'Url of changed picture(download and upload above)'
-          = text_field_tag 'new_source', nil, class: 'form-control'
         .modal-footer
           = f.button :submit

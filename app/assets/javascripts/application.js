@@ -31,7 +31,7 @@ var featherEditor = new Aviary.Feather({
     apiKey: '1234567',
     onSave: function(imageID, newURL) {
 	var img = document.getElementById(imageID);
-	var newSource = document.getElementById('new_source');
+	var newSource = document.getElementById('photo_remote_source_url');
 	img.src = newURL;
 	newSource.value = newURL;
     },

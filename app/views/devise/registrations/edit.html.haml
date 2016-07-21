@@ -7,6 +7,7 @@
 
       .form-inputs
         = f.input :avatar, as: :file
+        = f.input :remote_avatar_url
         = f.input :gravatar, as: :boolean
         = f.input :full_name, required: false, class: 'form-control'
         = f.input :email, required: false, class: 'form-control'
