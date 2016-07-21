@@ -1,6 +1,6 @@
 .thumbnail
   = link_to album_photo_path(@username, photo.album.id, photo.id) do
-    = image_tag photo.source.url
+    = image_tag photo.source.thumb.url
   .caption
     %h2.h4= photo.title
     %p= photo.caption

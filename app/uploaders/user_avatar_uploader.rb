@@ -2,7 +2,7 @@
 
 class UserAvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  process resize_to_limit: [300, 300]
+  process resize_to_limit: [500, 500]
 
 
   # Override the directory where uploaded files will be stored.

@@ -1,7 +1,7 @@
 .thumbnail
   = link_to album_path(@username, album) do
     - if album.photos.any?
-      = image_tag album.photos.first.source.url 
+      = image_tag album.photos.first.source.thumb.url 
     - else
       = image_tag ''
   %hr
