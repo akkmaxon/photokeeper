@@ -27,7 +27,9 @@ var featherEditor = new Aviary.Feather({
     apiKey: '1234567',
     onSave: function(imageID, newURL) {
 	var img = document.getElementById(imageID);
+	var newSource = document.getElementById('new_source');
 	img.src = newURL;
+	newSource.value = newURL;
     },
     onError: function(errorObj) {
       alert(errorObj.message);
