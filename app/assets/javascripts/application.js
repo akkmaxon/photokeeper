@@ -31,9 +31,14 @@ var featherEditor = new Aviary.Feather({
     apiKey: '1234567',
     onSave: function(imageID, newURL) {
 	var img = document.getElementById(imageID);
-	var newSource = document.getElementById('photo_remote_source_url');
 	img.src = newURL;
-	newSource.value = newURL;
+	if(imageID == "editableimage") {
+	  var newSource = document.getElementById('photo_remote_source_url');
+	  newSource.value = newURL;
+	} else {
+	  var newAvatar = document.getElementById('user_remote_avatar_url');
+	  newAvatar.value = newURL;
+	}
     },
     onError: function(errorObj) {
       alert(errorObj.message);

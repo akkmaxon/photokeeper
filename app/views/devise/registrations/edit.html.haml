@@ -8,6 +8,8 @@
       .form-inputs
         = f.input :avatar, as: :file
         = f.input :remote_avatar_url
+        %hr
+        %a.btn.btn-primary{href: "#", onclick: "return launchEditor('avatar', 'http://localhost:3000#{resource.avatar.url}');"} Edit avatar
         = f.input :gravatar, as: :boolean
         = f.input :full_name, required: false, class: 'form-control'
         = f.input :email, required: false, class: 'form-control'
