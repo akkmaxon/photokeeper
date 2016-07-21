@@ -1,14 +1,21 @@
-- if @username == snake_case(current_user.full_name)
-  .pull-right
-    %button.btn.btn-link{data: {toggle: 'modal', target: '#create-photo'}} Upload New Photo
-    %button.btn.btn-link{data: {toggle: 'modal', target: '#edit-album'}} Edit Album
-    %button.btn.btn-link{data: {toggle: 'modal', target: '#delete-album'}} Delete Album
 %ol.breadcrumb
   %li
     %a{href: feed_url(@username)}= full_name_from_params(@username)
   %li
     %a{href: albums_url(@username)} Albums
   %li.active= @album.title
+- if @username == snake_case(current_user.full_name)
+  .dropdown
+    %button.btn.btn-link.dropdown-toggle#actions{data: {toggle: 'dropdown'}, 'aria-hashpopup' => 'true', 'aria-expanded' => 'false'}
+      Actions
+      %span.caret
+    %ul.dropdown-menu{'aria-labelledby' => 'actions'}
+      %li
+        %button.btn.btn-link{data: {toggle: 'modal', target: '#create-photo'}} Upload New Photo
+      %li
+        %button.btn.btn-link{data: {toggle: 'modal', target: '#edit-album'}} Edit Album
+      %li
+        %button.btn.btn-link{data: {toggle: 'modal', target: '#delete-album'}} Delete Album
 
 #create-photo.modal.fade{tabindex: '-1', role: 'dialog'}
   = render 'photos/new'
