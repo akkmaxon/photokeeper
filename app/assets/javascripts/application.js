@@ -22,6 +22,10 @@ $(window).load(function() {
     gutter: 24,
     isFitWidth: true
   });
+  var hideAlert = function () {
+    $('.alert').fadeOut(1000);
+  }
+  setTimeout(hideAlert, 2000);
 });
 var featherEditor = new Aviary.Feather({
     apiKey: '1234567',

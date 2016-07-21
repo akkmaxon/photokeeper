@@ -21,7 +21,8 @@
     .panel-body
       .row
         .col-sm-6.col-md-8.col-lg-9
-          = image_tag @photo.source.url, id: "editableimage"
+          = link_to @photo.source.url, target: '_blank' do
+            = image_tag @photo.source.url, id: "editableimage"
         .col-sm-6.col-md-4.col-lg-3
           %h2.h4= @photo.title
           %p= @photo.caption
