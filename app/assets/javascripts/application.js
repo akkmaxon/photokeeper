@@ -52,3 +52,11 @@ function launchEditor(id, src) {
     });
     return false;
 }
+
+var cleanPassword = function() {
+  var password = $('#user_password').val();
+  var password_confirmation = $('#user_password_confirmation').val();
+  if(password != password_confirmation) {
+    $('#user_password').val('');
+  }
+};
