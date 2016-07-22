@@ -15,6 +15,9 @@
 #feed
   = render partial: 'users/object'
 
-%hr
-#feed-loader{style: 'margin-bottom: 100px'}
-  = render 'users/feed_loader'
+- if @objects.blank?
+  %h2 You'll see your activities here, create a new album for beginning
+- else
+  %hr
+  #feed-loader{style: 'margin-bottom: 100px'}
+    = render 'users/feed_loader'
