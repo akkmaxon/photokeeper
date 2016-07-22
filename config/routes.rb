@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   get 'search' => 'users#index'
   resources :relationships, only: [:create, :destroy]
 
+  get 'try' => 'static_pages#login_as_default_user'
   root 'static_pages#welcome'
 end

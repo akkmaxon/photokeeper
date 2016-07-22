@@ -1,10 +1,7 @@
 .jumbotron.text-center
   %h1.h3 Photokeeper
   %p The best place in the world for storing your photos!
-  = form_for :user, url: session_path(:user) do |f|
-    = f.email_field :email, value: 'dyadya_fyodor@prostokvashino.com', hidden: true
-    = f.password_field :password, value: 'password', hidden: true
-    = f.submit 'Look at the example', class: 'btn btn-success'
-
+  %a.btn.btn-success{href: try_path} Look at the example!
+  or
   %a.btn.btn-primary{href: new_user_registration_path, id: 'sign_up'} Sign Up
   %a.btn.btn-link{href: new_user_session_path, id: 'sign_in'} Sign In
