@@ -12,10 +12,9 @@
     %li#comments
       %a{href: '#show-comments'} Comments
 %br
-- @objects.each do |obj|
-  - if obj.respond_to? :source
-    = render partial: 'users/feed_photo', locals: { photo: obj }
-  - elsif obj.respond_to? :body
-    = render partial: 'users/feed_comment', locals: { comment: obj }
-  - else
-    = render partial: 'users/feed_album', locals: { album: obj }
+#feed
+  = render partial: 'users/object'
+
+%hr
+#feed-loader{style: 'margin-bottom: 100px'}
+  = render 'users/feed_loader'

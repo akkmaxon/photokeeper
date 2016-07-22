@@ -1,0 +1,7 @@
+- @objects.each do |object|
+  - if object.respond_to? :source
+    = render partial: 'users/feed_photo', locals: { photo: object }
+  - elsif object.respond_to? :body
+    = render partial: 'users/feed_comment', locals: { comment: object }
+  - else
+    = render partial: 'users/feed_album', locals: { album: object }

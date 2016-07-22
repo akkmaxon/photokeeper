@@ -1,18 +1,25 @@
 class UsersController < ApplicationController
   before_action :set_username, except: :index
+  OBJECTS_ON_PAGE = 20
 
   def index
     @users = search(params[:search])
   end
 
   def feed
+    @page = params[:page].to_i
     all = []
     %w[ photos comments albums ].each do |obj|
       find_objects(obj).each do |o|
 	all << o
       end
     end
-    @objects = all.sort { |a,b| b.updated_at <=> a.updated_at }
+    all = all.sort { |a,b| b.updated_at <=> a.updated_at }
+    @objects = all[@page * OBJECTS_ON_PAGE,OBJECTS_ON_PAGE]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def following
@@ -45,16 +52,11 @@ class UsersController < ApplicationController
   def extract_objects(user, table)
     case table
     when 'photos'
-      user.photos.where("updated_at > ?", not_before_date)
+      user.photos
     when 'albums'
-      user.albums.where("updated_at > ?", not_before_date)
+      user.albums
     when 'comments'
-      user.comments.where("updated_at > ?", not_before_date)
+      user.comments
     end
-  end
-
-  def not_before_date(days = 3)
-    seconds_in_one_day = 86400
-    Time.now - seconds_in_one_day * days
   end
 end
