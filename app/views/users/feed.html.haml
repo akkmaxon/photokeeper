@@ -2,7 +2,7 @@
   %li.active= full_name_from_params(@username)
 
 %header#feed-links
-  %ul.nav.nav-tabs
+  %ul.nav.nav-tabs{data: {spy: 'affix', offset_top: '150'}}
     %li.active#all
       %a{href: '#show-all'} All
     %li#photos
