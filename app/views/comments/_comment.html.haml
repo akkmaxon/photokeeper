@@ -2,6 +2,6 @@
   %p=comment.body
   %footer
     .pull-right
-      = comment.created_at.strftime "%d %B %Y"
-    = comment.user.full_name
+      = comment.date_of_creating
+    = comment.owner_name
     %span.glyphicon.glyphicon-comment

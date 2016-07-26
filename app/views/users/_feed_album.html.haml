@@ -11,10 +11,10 @@
     .panel-body
       .row
         .col-sm-6
-          = link_to album_url(snake_case(album.user.full_name), album) do
-            - url = if album.photos.empty? then '' else album.photos.first.source.thumb.url end
+          = link_to album_url(snake_case(album.owner_name), album) do
+            - url = if album.photos.empty? then '' else album.newest_photo_thumb end
             = image_tag url, style: 'max-width: 100%'
         .col-sm-6
           %h2.h4= album.title
           %hr
-          %p= pluralize(album.photos.count, 'photo')
+          %p= pluralize(album.photos_count, 'photo')

@@ -1,12 +1,12 @@
 .thumbnail
   = link_to album_path(@username, album) do
     - if album.photos.any?
-      = image_tag album.photos.first.source.thumb.url 
+      = image_tag album.newest_photo_thumb
     - else
       = image_tag ''
   %hr
   .caption
     = link_to album_path(@username, album), class: 'btn btn-primary pull-right' do
       Photos
-      %span.badge= album.photos.count
+      %span.badge= album.photos_count
     %h2.h4= album.title

@@ -11,14 +11,14 @@
     .panel-body
       .row
         .col-xs-6
-          = link_to album_photo_url(snake_case(photo.user.full_name), photo.album, photo) do
-            = image_tag photo.source.thumb.url, style: 'max-width: 100%'
+          = link_to album_photo_url(snake_case(photo.owner_name), photo.album, photo) do
+            = image_tag photo.thumb_url, style: 'max-width: 100%'
         .col-xs-6
           %h2.h4= photo.title
           %p= photo.caption
           %hr
           %p
             Album: 
-            = link_to album_url(snake_case(photo.user.full_name), photo.album) do
-              = photo.album.title
-          %p= pluralize(photo.comments.count, 'comment')
+            = link_to album_url(snake_case(photo.owner_name), photo.album) do
+              = photo.album_title
+          %p= pluralize(photo.comments_count, 'comment')

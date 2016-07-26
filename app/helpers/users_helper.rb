@@ -4,7 +4,7 @@ module UsersHelper
   end
 
   def possessive_words(comment)
-    author_of_comment = comment.user.full_name
+    author_of_comment = comment.owner_name
     author_of_photo = author(comment.photo.user)
     if author_of_comment == author_of_photo
       'personal'

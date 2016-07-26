@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def following?(user)
+    following.include? user
+  end
+
   def follow(other_user)
     active_relationships.create followed_id: other_user.id
   end

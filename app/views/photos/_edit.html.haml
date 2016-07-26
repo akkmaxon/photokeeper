@@ -12,6 +12,6 @@
         or
         = f.input :remote_source_url
         %hr
-        %a.btn.btn-primary{href: "#", onclick: "return launchEditor('editableimage', '#{@photo.source.url}');"} Use photo editor
+        %a.btn.btn-primary{href: "#", onclick: "return launchEditor('editableimage', '#{@photo.original_url}');"} Use photo editor
         .modal-footer
           = f.button :submit
