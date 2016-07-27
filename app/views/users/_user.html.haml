@@ -1,15 +1,16 @@
-.thumbnail
-  = avatar_for user
-  .caption
-    .text-center= user.full_name
-    - unless user == current_user
-      %hr
-      = link_to albums_url(snake_case(user.full_name)), class: 'btn btn-primary pull-right' do
-        Albums
-        %span.badge= user.albums.count
-      = link_to 'Feed', feed_url(snake_case(user.full_name)), class: 'btn btn-link'
-      %hr{style: 'width: 50%; margin-left: 0'}
-      - if current_user.following? user
-        = render partial: 'unfollow', locals: { user: user }
-      - else
-        = render partial: 'follow', locals: { user: user }
+- cache user do
+  .thumbnail
+    = avatar_for user
+    .caption
+      .text-center= user.full_name
+      - unless user == current_user
+        %hr
+        = link_to albums_url(snake_case(user.full_name)), class: 'btn btn-primary pull-right' do
+          Albums
+          %span.badge= user.albums.count
+        = link_to 'Feed', feed_url(snake_case(user.full_name)), class: 'btn btn-link'
+        %hr{style: 'width: 50%; margin-left: 0'}
+        - if current_user.following? user
+          = render partial: 'unfollow', locals: { user: user }
+        - else
+          = render partial: 'follow', locals: { user: user }

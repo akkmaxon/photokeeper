@@ -47,4 +47,12 @@ class User < ActiveRecord::Base
   def unfollow(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
   end
+
+  def count_of_followers
+    followers.count
+  end
+
+  def count_of_following
+    following.count
+  end
 end
