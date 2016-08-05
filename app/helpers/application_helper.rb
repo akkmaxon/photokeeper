@@ -6,7 +6,7 @@ module ApplicationHelper
 		 else
 		   user.avatar.url
 		 end
-    image_tag avatar_url, alt: user.full_name, id: 'avatar'
+    image_tag avatar_url, alt: user.full_name
   end
 
   def snake_case(name)
